@@ -2,6 +2,7 @@ package com.example.deployJAVA08.service;
 import com.example.deployJAVA08.entity.Product;
 import com.example.deployJAVA08.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +14,12 @@ public class ProductService {
     @Autowired
     private ProductRepository repo;
 
+    @Cacheable("products")
     public List<Product> getAll() {
         return repo.findAll();
     }
 
+    @Cacheable("product")
     public Optional<Product> getById(Integer id) {
         return repo.findById(id);
     }
