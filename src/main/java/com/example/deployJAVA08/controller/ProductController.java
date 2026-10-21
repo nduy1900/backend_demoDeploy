@@ -25,9 +25,7 @@ public class ProductController {
     // GET by id
     @GetMapping("/{id}")
     public ResponseEntity<Product> getById(@PathVariable Integer id) {
-        return service.getById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(service.getById(id));
     }
 
     // POST
